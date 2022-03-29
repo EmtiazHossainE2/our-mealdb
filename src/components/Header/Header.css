@@ -1,0 +1,9 @@
+nav ul li {
+    margin-right: 30px;
+}
+nav ul li a {
+    font-size: 18px;
+}
+nav ul li a:hover {
+    color: orange;
+}
