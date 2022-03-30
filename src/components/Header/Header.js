@@ -3,12 +3,13 @@ import './Header.css'
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import CustomLink from '../CustomLink/CustomLink';
 import logo from '../../logo.webp'
+import { Link } from 'react-router-dom';
 const Header = () => {
     return (
         <div>
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
                 <Container>
-                    <Navbar.Brand href="/"><img src={logo} alt="" /></Navbar.Brand>
+                    <Link to='/'><img src={logo} alt="" /></Link>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav" className='justify-content-end '>
                         <Nav className='nav-style'>
