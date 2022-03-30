@@ -8,6 +8,7 @@ import About from './Pages/About/About';
 import Contact from './Pages/Contact/Contact';
 import NotAvailAble from './components/NotAvailAble/NotAvailAble';
 import Details from './components/Details/Details';
+import Footer from './Pages/Footer/Footer';
 
 const App = () => {
     return (
@@ -21,6 +22,7 @@ const App = () => {
                 <Route path='/contact' element={<Contact></Contact>}></Route>
                 <Route path='*' element={<NotAvailAble></NotAvailAble>}></Route>
             </Routes>
+            <Footer></Footer>
         </div>
     );
 };
