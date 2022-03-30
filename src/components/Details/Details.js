@@ -22,7 +22,7 @@ const Details = () => {
                         <h5 className='my-3'>Category : {detail.strCategory}</h5>
                         <h5>Location : {detail.strArea}</h5>
                         <p className='my-3'>Ingredient : {detail.strIngredient5}</p>
-                        <p><strong>Description :</strong> {detail.strInstructions}</p>
+                        <p><strong>Description :</strong> {detail.strInstructions?.slice(0, 300)}</p>
                         <p><small>Tags : {detail.strTags}</small></p>
                         <button className='btn btn-warning'>Add To Cart</button>
                     </div>

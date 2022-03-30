@@ -37,7 +37,7 @@ const Products = () => {
                     <button onClick={handleClick} className='btn btn-warning'>Search Now</button>
                 </InputGroup>
             </div>
-            {/* <h5 className='text-center'>Items {products.length}</h5> */}
+
             <div className='row'>
                 {
                     products.map(product => <Product
