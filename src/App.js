@@ -1,14 +1,11 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
-import Header from './components/Header/Header';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = () => {
     return (
         <div className='overflow-hidden'>
-            <Header></Header>
-            <Routes>
-                <Route></Route>
-            </Routes>
+            <h3 className='text-center bg-danger'>Test</h3>
+
         </div>
     );
 };
