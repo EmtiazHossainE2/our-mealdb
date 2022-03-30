@@ -17,6 +17,7 @@ const Products = () => {
         setSearchText(e.target.value)
 
     }
+
     const handleClick = () => {
         fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchText}`)
             .then(res => res.json())
@@ -36,7 +37,7 @@ const Products = () => {
                     <button onClick={handleClick} className='btn btn-warning'>Search Now</button>
                 </InputGroup>
             </div>
-            <h5 className='text-center'>Items {products.length}</h5>
+            {/* <h5 className='text-center'>Items {products.length}</h5> */}
             <div className='row'>
                 {
                     products.map(product => <Product
