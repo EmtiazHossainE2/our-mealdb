@@ -1,0 +1,16 @@
+.nav-end{
+    justify-content: flex-end;
+    color: #fff;
+}
+.nav-style a{
+    text-decoration: none;
+    margin-right: 25px;
+    padding: 10px;
+    font-size: 17px;
+    color: #fff !important;
+    font-size: 17px;
+}
+.nav-style a:hover{
+    color: orange !important;
+    font-size: 17px;
+}
