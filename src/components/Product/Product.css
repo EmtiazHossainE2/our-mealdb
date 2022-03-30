@@ -1,0 +1,13 @@
+
+.cart-container{
+    background-color: #f1f3ecfc;
+    border-radius: 20px;
+}
+.btn-style{
+    background-color: rgb(60, 63, 75);
+    color: #fff;
+}
+.btn-style:hover {
+    color: #333;
+    background-color: #FFCA2C
+}

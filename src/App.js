@@ -9,7 +9,7 @@ import Contact from './Pages/Contact/Contact';
 
 const App = () => {
     return (
-        <div className='overflow-hidden'>
+        <div className='overflow-hidden '>
             <Header></Header>
             <Routes>
                 <Route path='/' element={<Home></Home>}></Route>
