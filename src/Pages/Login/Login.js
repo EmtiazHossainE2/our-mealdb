@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import "./AuthForm.css";
 import GoogleLogo from "../../images/google.svg";
 import { useNavigate } from "react-router-dom";
-import app from "../../firebase.init";
-import { getAuth, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { auth } from "../../firebase.init";
+import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 
-const auth = getAuth(app)
+
 
 const Login = () => {
+    const googleProvider = new GoogleAuthProvider();
     const navigate = useNavigate();
     const [email, setEmail] = useState({ value: "", error: "" });
     const [password, setPassword] = useState({ value: "", error: "" })
@@ -65,7 +66,6 @@ const Login = () => {
 
     //google provider handle 
     const handleGoogleSignIn = () => {
-        const googleProvider = new GoogleAuthProvider();
         signInWithPopup(auth, googleProvider)
             .then(result => {
                 const user = result.user
