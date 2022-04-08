@@ -1,10 +1,35 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Header.css'
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import CustomLink from '../CustomLink/CustomLink';
 import logo from '../../logo.webp'
 import { Link } from 'react-router-dom';
+import { onAuthStateChanged, signOut } from 'firebase/auth';
+import { auth } from '../../firebase.init';
 const Header = () => {
+
+    const [getUser, setGetUser] = useState({})
+
+    useEffect(() => {
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                setGetUser(user);
+
+            } else {
+                setGetUser({})
+            }
+        });
+    }, [])
+
+    const handleLogOut = () => {
+        signOut(auth)
+            .then(() => {
+
+            })
+            .catch((error) => {
+
+            });
+    }
     return (
         <div>
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -17,7 +42,11 @@ const Header = () => {
                             <CustomLink className='pb-5' to='/restaurant'>Restaurant</CustomLink>
                             <CustomLink className='pb-5' to='/about'>About Us</CustomLink>
                             <CustomLink className='pb-5' to='/contact'>Contact Us</CustomLink>
-                            <CustomLink className='py-2 px-3 border border-1' to='/log-in'>Log in</CustomLink>
+                            {getUser?.uid ?
+                                <CustomLink className='py-2 px-3 border border-1' to='/log-in' onClick={handleLogOut} >Log out</CustomLink>
+                                :
+                                <CustomLink className='py-2 px-3 border border-1' to='/log-in'>Log in</CustomLink>
+                            }
                             <CustomLink className='py-2 px-3 border border-1' to='/sign-up'>Sign up</CustomLink>
                         </Nav>
                     </Navbar.Collapse>
