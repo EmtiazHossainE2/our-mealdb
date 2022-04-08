@@ -12,7 +12,6 @@ const Product = (props) => {
             <div className="cart  p-3 m-3 cart-container text-center">
                 <img className='w-75  m-auto  rounded p-1 ' src={strMealThumb} alt="" />
                 <h4>Name : {strMeal.slice(0, 15)}</h4>
-                {/* <p>{strInstructions.slice(0, 10) ? strInstructions.slice(0, 10) : strInstructions}</p> */}
                 <p>{strInstructions.slice(0, 100)}</p>
 
                 <div className="d-flex justify-content-between py-4">
