@@ -9,6 +9,8 @@ import Contact from './Pages/Contact/Contact';
 import NotAvailAble from './components/NotAvailAble/NotAvailAble';
 import Details from './components/Details/Details';
 import Footer from './Pages/Footer/Footer';
+import Login from './Pages/Login/Login';
+import Signup from './Pages/Signup/Signup';
 
 const App = () => {
     return (
@@ -20,6 +22,8 @@ const App = () => {
                 <Route path='/details/:detailsId' element={<Details></Details>}></Route>
                 <Route path='/about' element={<About></About>}></Route>
                 <Route path='/contact' element={<Contact></Contact>}></Route>
+                <Route path='/log-in' element={<Login></Login>}></Route>
+                <Route path='/sign-up' element={<Signup></Signup>}></Route>
                 <Route path='*' element={<NotAvailAble></NotAvailAble>}></Route>
             </Routes>
             <Footer></Footer>

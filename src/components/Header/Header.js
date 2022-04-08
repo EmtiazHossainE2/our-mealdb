@@ -17,6 +17,8 @@ const Header = () => {
                             <CustomLink className='pb-5' to='/restaurant'>Restaurant</CustomLink>
                             <CustomLink className='pb-5' to='/about'>About Us</CustomLink>
                             <CustomLink className='pb-5' to='/contact'>Contact Us</CustomLink>
+                            <CustomLink className='py-2 px-3 border border-1' to='/log-in'>Log in</CustomLink>
+                            <CustomLink className='py-2 px-3 border border-1' to='/sign-up'>Sign up</CustomLink>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
