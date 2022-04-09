@@ -14,10 +14,6 @@ const Signup = () => {
     const [password, setPassword] = useState({ value: "", error: "" });
     const [confirmPassword, setConfirmPassword] = useState({ value: "", error: "" });
 
-    // console.log(email);
-    // console.log(password);
-    // console.log(confirmPassword);
-
     //google provider handle 
     const handleGoogleSignIn = () => {
         signInWithPopup(auth, googleProvider)
@@ -104,7 +100,6 @@ const Signup = () => {
                     }
                 });
         }
-
     }
 
     return (

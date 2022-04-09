@@ -21,7 +21,6 @@ const Login = () => {
         signInWithPopup(auth, googleProvider)
             .then(result => {
                 const user = result.user
-                // console.log(user);
                 toast.success(`Welcome `, { id: "welcome" });
                 navigate("/restaurant")
             })
