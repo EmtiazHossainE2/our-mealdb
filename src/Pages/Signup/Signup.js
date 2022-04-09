@@ -21,6 +21,7 @@ const Signup = () => {
         signInWithPopup(auth, googleProvider)
             .then(result => {
                 const user = result.user
+                toast.success(`Welcome `, { id: "welcome" });
                 navigate("/restaurant")
             })
             .catch(error => {
@@ -90,7 +91,7 @@ const Signup = () => {
                     const user = userCredential.user;
                     console.log(user);
                     navigate("/")
-                    toast.success("Welcome", { id: "welcome" });
+                    toast.success("welcome to Britannica", { id: "success" });
                 })
                 .catch((error) => {
                     const errorMessage = error.message;
