@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import "./AuthForm.css";
 import GoogleLogo from "../../images/google.svg";
 import { useNavigate } from "react-router-dom";
@@ -8,61 +7,8 @@ import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from 
 
 
 const Login = () => {
-    const googleProvider = new GoogleAuthProvider();
     const navigate = useNavigate();
-    const [email, setEmail] = useState({ value: "", error: "" });
-    const [password, setPassword] = useState({ value: "", error: "" })
-
-
-    //handle email  
-    const handleEmail = (e) => {
-        // console.log( e.target.value);
-        const emailValue = e.target.value
-        if (/\S+@\S+\.\S+/.test(emailValue)) {
-            setEmail({ value: emailValue, error: "" });
-        } else {
-            setEmail({ value: "", error: "Please Provide a valid Email" });
-        }
-    }
-
-    //handle password  
-    const handlePassword = e => {
-        // console.log(e.target.value);
-        const passwordValue = e.target.value
-        setPassword({ value: passwordValue, error: "" });
-    }
-
-    // handle login 
-    const handleLogIn = e => {
-        e.preventDefault();
-
-        if (email.value === "") {
-            setEmail({ value: "", error: "Email is required" });
-        }
-
-        if (password.value === "") {
-            setPassword({ value: "", error: "Password is required" });
-        }
-        if (email.value && password.value) {
-            signInWithEmailAndPassword(auth, email.value, password.value)
-                .then((userCredential) => {
-                    const user = userCredential.user;
-                    console.log(user);
-                    navigate("/");
-                })
-                .catch((error) => {
-                    const errorMessage = error.message;
-
-                    if (errorMessage.includes("wrong-password")) {
-                        console.error("Wrong Password", { id: "error" });
-                    } else {
-                        console.error(errorMessage, { id: "error" });
-                    }
-                });
-        }
-
-
-    }
+    const googleProvider = new GoogleAuthProvider();
 
     //google provider handle 
     const handleGoogleSignIn = () => {
@@ -78,6 +24,31 @@ const Login = () => {
         console.log('clicked');
     }
 
+    //handle email  
+
+
+    //handle password  
+
+
+    // handle login 
+    const handleLogIn = event => {
+        event.preventDefault();
+        const email = event.target.email.value
+        const password = event.target.password.value
+        signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                // Signed in 
+                const user = userCredential.user;
+                console.log(user);
+            })
+            .catch((error) => {
+                const errorMessage = error.message;
+                console.log(errorMessage);
+            });
+    }
+
+
+
     return (
         <div className='auth-form-container '>
             <div className='auth-form'>
@@ -85,13 +56,13 @@ const Login = () => {
                 <form onSubmit={handleLogIn}>
                     <div className='input-field'>
                         <label htmlFor='email'>Email</label>
-                        <div className='input-wrapper' onBlur={handleEmail}>
+                        <div className='input-wrapper' >
                             <input type='text' name='email' id='email' />
                         </div>
                     </div>
                     <div className='input-field'>
                         <label htmlFor='password'>Password</label>
-                        <div className='input-wrapper' onBlur={handlePassword}>
+                        <div className='input-wrapper' >
                             <input type='password' name='password' id='password' />
                         </div>
                     </div>

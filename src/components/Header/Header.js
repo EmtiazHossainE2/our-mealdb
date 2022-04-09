@@ -14,7 +14,6 @@ const Header = () => {
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 setGetUser(user);
-
             } else {
                 setGetUser({})
             }
@@ -43,11 +42,16 @@ const Header = () => {
                             <CustomLink className='pb-5' to='/about'>About Us</CustomLink>
                             <CustomLink className='pb-5' to='/contact'>Contact Us</CustomLink>
                             {getUser?.uid ?
-                                <CustomLink className='py-2 px-3 border border-1' to='/log-in' onClick={handleLogOut} >Log out</CustomLink>
+                                <CustomLink className='py-2 px-3 border border-1 rounded-pill' to='/log-in' onClick={handleLogOut} >Log out</CustomLink>
                                 :
-                                <CustomLink className='py-2 px-3 border border-1' to='/log-in'>Log in</CustomLink>
+                                <CustomLink className='py-2 px-3 border border-1 rounded-pill' to='/log-in'>Log in</CustomLink>
                             }
-                            <CustomLink className='py-2 px-3 border border-1' to='/sign-up'>Sign up</CustomLink>
+                            {getUser?.uid ?
+                                ""
+                                :
+                                <CustomLink className='py-2 px-3 border border-1 rounded-pill' to='/sign-up'>Sign up</CustomLink>
+                            }
+
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
