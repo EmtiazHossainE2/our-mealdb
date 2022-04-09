@@ -1,10 +1,12 @@
 import "./AuthForm.css";
 import GoogleLogo from "../../images/google.svg";
+import FacebookLogo from "../../images/facebook.png";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../../firebase.init";
 import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { AiOutlineExclamationCircle } from "react-icons/ai";
 
 
 
@@ -94,20 +96,34 @@ const Login = () => {
         <div className='auth-form-container '>
             <div className='auth-form'>
                 <h3>Login</h3>
+                <div className="third-party">
+                    <div className='input-wrapper'>
+                        <button className='google-auth' onClick={handleGoogleSignIn}>
+                            <img style={{ width: '30px', height: '30px' }} src={GoogleLogo} alt='' />
+                            <p> Continue with Google </p>
+                        </button>
+                    </div>
+                    <div className='input-wrapper'>
+                        <button className='google-auth' onClick={handleGoogleSignIn}>
+                            <img style={{ width: '30px', height: '30px' }} src={FacebookLogo} alt='' />
+                            <p> Continue with Facebook </p>
+                        </button>
+                    </div>
+                </div>
                 <form onSubmit={handleLogIn}>
                     <div className='input-field'>
                         <label htmlFor='email'>Email</label>
                         <div className='input-wrapper' >
                             <input type='text' onBlur={handleEmail} name='email' id='email' />
                         </div>
-                        {email?.error && <p className="error">{email.error}</p>}
+                        {email?.error && <p className="error"> <AiOutlineExclamationCircle /> {email.error}</p>}
                     </div>
                     <div className='input-field'>
                         <label htmlFor='password'>Password</label>
                         <div className='input-wrapper' >
                             <input type='password' onBlur={handlePassword} name='password' id='password' />
                         </div>
-                        {password?.error && <p className="error">{password.error}</p>}
+                        {password?.error && <p className="error"><AiOutlineExclamationCircle /> {password.error}</p>}
 
                     </div>
                     <button type='submit' className='auth-form-submit' >
@@ -118,17 +134,6 @@ const Login = () => {
                     New to Britannica ?{" "}
                     <span onClick={() => navigate("/sign-up")}>Create New Account</span>
                 </p>
-                <div className='horizontal-divider'>
-                    <div className='line-left' />
-                    <p>or</p>
-                    <div className='line-right' />
-                </div>
-                <div className='input-wrapper'>
-                    <button className='google-auth' onClick={handleGoogleSignIn}>
-                        <img src={GoogleLogo} alt='' />
-                        <p> Continue with Google </p>
-                    </button>
-                </div>
             </div>
         </div>
     );
