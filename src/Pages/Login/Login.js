@@ -39,7 +39,7 @@ const Login = () => {
             .then((userCredential) => {
                 // Signed in 
                 const user = userCredential.user;
-                console.log(user);
+                navigate("/")
             })
             .catch((error) => {
                 const errorMessage = error.message;
