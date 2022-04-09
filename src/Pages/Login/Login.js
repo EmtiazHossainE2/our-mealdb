@@ -35,16 +35,18 @@ const Login = () => {
         event.preventDefault();
         const email = event.target.email.value
         const password = event.target.password.value
-        signInWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                // Signed in 
-                const user = userCredential.user;
-                navigate("/")
-            })
-            .catch((error) => {
-                const errorMessage = error.message;
-                console.log(errorMessage);
-            });
+        if (email.value && password.value) {
+            signInWithEmailAndPassword(auth, email.value, password.value)
+                .then((userCredential) => {
+                    // Signed in 
+                    const user = userCredential.user;
+                    navigate("/")
+                })
+                .catch((error) => {
+                    const errorMessage = error.message;
+                    console.log(errorMessage);
+                });
+        }
     }
 
 
@@ -52,7 +54,7 @@ const Login = () => {
     return (
         <div className='auth-form-container '>
             <div className='auth-form'>
-                <h1>Login</h1>
+                <h3>Login</h3>
                 <form onSubmit={handleLogIn}>
                     <div className='input-field'>
                         <label htmlFor='email'>Email</label>

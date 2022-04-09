@@ -13,6 +13,7 @@ const Signup = () => {
 
     console.log(email);
     console.log(password);
+    console.log(confirmPassword);
 
     //google provider handle 
     const handleGoogleSignIn = () => {
@@ -41,7 +42,7 @@ const Signup = () => {
     //handle password 
     const handlePassword = event => {
         const passwordValue = event.target.value
-        if (passwordValue.length < 7) {
+        if (passwordValue.length < 6) {
             setPassword({ value: "", error: "Password too short" });
         }
         else if (!/(?=.*[A-Z])/.test(passwordValue)) {
@@ -57,8 +58,12 @@ const Signup = () => {
 
     //handle confirm password 
     const handleConfirmPassword = event => {
-        const confirmPasswordValue = event.target.value
-        setConfirmPassword(confirmPasswordValue)
+        const confirmValue = event.target.value
+        if (confirmValue !== password.value) {
+            setConfirmPassword({ value: "", error: "Password Not Match" });
+        } else {
+            setConfirmPassword({ value: confirmValue, error: "" });
+        }
     }
 
     // form handle sign up
@@ -66,25 +71,26 @@ const Signup = () => {
         event.preventDefault();
         // const emailValue = event.target.email.value
         // const passwordValue = event.target.password.value
-        createUserWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                // Signed in 
-                const user = userCredential.user;
-                console.log(user);
-                navigate("/")
-            })
-            .catch((error) => {
-                const errorMessage = error.message;
-                console.log(errorMessage);
-            });
-        console.log("submit");
+        if (email.value && password.value) {
+            createUserWithEmailAndPassword(auth, email.value, password.value)
+                .then((userCredential) => {
+                    // Signed in 
+                    const user = userCredential.user;
+                    console.log(user);
+                    navigate("/")
+                })
+                .catch((error) => {
+                    const errorMessage = error.message;
+                    console.log(errorMessage);
+                });
+        }
 
     }
 
     return (
         <div className='auth-form-container '>
             <div className='auth-form'>
-                <h1>Sign Up</h1>
+                <h3>Sign Up</h3>
                 <form onSubmit={handleSignup}>
                     <div className='input-field'>
                         <label htmlFor='email'>Email</label>
@@ -95,6 +101,7 @@ const Signup = () => {
                                 name='email'
                                 id='email' />
                         </div>
+                        {email?.error && <p className="error">{email.error}</p>}
                     </div>
                     <div className='input-field'>
                         <label htmlFor='password'>Password</label>
@@ -105,6 +112,7 @@ const Signup = () => {
                                 name='password'
                                 id='password' />
                         </div>
+                        {password?.error && <p className="error">{password.error}</p>}
                     </div>
                     <div className='input-field'>
                         <label htmlFor='confirm-password'>Confirm Password</label>
@@ -116,6 +124,7 @@ const Signup = () => {
                                 id='confirm-password'
                             />
                         </div>
+                        {confirmPassword?.error && <p className="error">{confirmPassword.error}</p>}
                     </div>
                     <button type='submit' className='auth-form-submit'>
                         Sign Up
