@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import GoogleLogo from "../../images/google.svg";
 import { auth } from "../../firebase.init";
 import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import toast from "react-hot-toast";
 
 const Signup = () => {
     const navigate = useNavigate();
@@ -11,16 +12,15 @@ const Signup = () => {
     const [password, setPassword] = useState({ value: "", error: "" });
     const [confirmPassword, setConfirmPassword] = useState({ value: "", error: "" });
 
-    console.log(email);
-    console.log(password);
-    console.log(confirmPassword);
+    // console.log(email);
+    // console.log(password);
+    // console.log(confirmPassword);
 
     //google provider handle 
     const handleGoogleSignIn = () => {
         signInWithPopup(auth, googleProvider)
             .then(result => {
                 const user = result.user
-                console.log(user);
                 navigate("/restaurant")
             })
             .catch(error => {
@@ -69,19 +69,36 @@ const Signup = () => {
     // form handle sign up
     const handleSignup = (event) => {
         event.preventDefault();
-        // const emailValue = event.target.email.value
-        // const passwordValue = event.target.password.value
-        if (email.value && password.value) {
+
+        if (email.value === "") {
+            setEmail({ value: "", error: "Email is required" });
+        }
+        if (password.value === "") {
+            setPassword({ value: "", error: "Password is required" });
+        }
+        if (confirmPassword.value === "") {
+            setConfirmPassword({
+                value: "", error: "Password confirmation is required",
+            });
+        }
+
+
+        if (email.value && password.value && confirmPassword.value === password.value) {
             createUserWithEmailAndPassword(auth, email.value, password.value)
                 .then((userCredential) => {
                     // Signed in 
                     const user = userCredential.user;
                     console.log(user);
                     navigate("/")
+                    toast.success("Welcome", { id: "welcome" });
                 })
                 .catch((error) => {
                     const errorMessage = error.message;
-                    console.log(errorMessage);
+                    if (errorMessage.includes("already-in-use")) {
+                        toast.error("Email already in use", { id: "error" });
+                    } else {
+                        toast.error(errorMessage, { id: "error" });
+                    }
                 });
         }
 

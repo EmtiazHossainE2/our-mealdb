@@ -11,11 +11,13 @@ import Details from './components/Details/Details';
 import Footer from './Pages/Footer/Footer';
 import Login from './Pages/Login/Login';
 import Signup from './Pages/Signup/Signup';
+import { Toaster } from 'react-hot-toast';
 
 const App = () => {
     return (
         <div className='overflow-hidden '>
             <Header></Header>
+            <Toaster></Toaster>
             <Routes>
                 <Route path='/' element={<Home></Home>}></Route>
                 <Route path='/restaurant' element={<Restaurant></Restaurant>}></Route>
