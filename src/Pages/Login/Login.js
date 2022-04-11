@@ -44,7 +44,7 @@ const Login = () => {
     const handlePassword = event => {
         const passwordValue = event.target.value
         if (passwordValue.length < 6) {
-            setPassword({ value: "", error: "Password too short" });
+            setPassword({ value: "", error: "Opss ! please provide password" });
         }
         else if (!/(?=.*[A-Z])/.test(passwordValue)) {
             setPassword({

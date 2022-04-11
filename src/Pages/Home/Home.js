@@ -2,6 +2,7 @@ import React from 'react';
 import Banner from '../../components/Banner/Banner';
 import MyLineChart from '../../components/MyLineChart/MyLineChart';
 import Products from '../../components/Products/Products';
+import Test from '../../components/Test/Test';
 import banner2 from '../../images/banner2.png'
 const Home = () => {
     return (
@@ -12,6 +13,7 @@ const Home = () => {
             <Products></Products>
             <br />
             {/* <MyLineChart></MyLineChart> */}
+            <Test></Test>
 
         </div>
     );
