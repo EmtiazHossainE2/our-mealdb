@@ -7,7 +7,6 @@ const Details = () => {
     useEffect(() => {
         fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${detailsId}`)
             .then(res => res.json())
-            // .then(data => console.log(data.meals))
             .then(data => setDetail(data.meals[0]))
     }, [detailsId])
     return (
